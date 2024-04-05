@@ -6,9 +6,7 @@ import {
 } from "./src/calculation/calculation.js"
 import getVideosMetadata from "./src/search/videoMetadata.js"
 
-
 const stackbuildersVideoData = await getVideosMetadata()
-
 
 const topLikedVideos = getTopLikedVideos(stackbuildersVideoData)
 const newestVideos = getNewestVideos(stackbuildersVideoData)
