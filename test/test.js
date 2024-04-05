@@ -25,3 +25,10 @@ describe("getNewestVideos", function () {
       assert.lengthOf(result, 5, "Result should have length 5");
   });
 });
+
+describe("getTotalLikes", function () {
+  it("should return the total number of likes of all videos", function () {
+      const result = getTotalLikes(fixtureData);
+      assert.isNumber(result, "Result should be a number");
+  });
+});
