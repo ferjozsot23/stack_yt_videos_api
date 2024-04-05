@@ -1,4 +1,6 @@
-import assert from "assert"
+
+import { assert } from 'chai';
+
 import {
     getTopLikedVideos,
     getNewestVideos,
@@ -15,3 +17,11 @@ describe("getTopLikedVideos", function () {
         assert.lengthOf(result, 5, "Result should have length 5")       
     })
 })
+
+describe("getNewestVideos", function () {
+  it("should return the top 5 newest videos", function () {
+      const result = getNewestVideos(fixtureData);
+      assert.isArray(result, "Result should be an array");
+      assert.lengthOf(result, 5, "Result should have length 5");
+  });
+});
