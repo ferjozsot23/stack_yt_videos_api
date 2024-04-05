@@ -32,3 +32,11 @@ describe("getTotalLikes", function () {
       assert.isNumber(result, "Result should be a number");
   });
 });
+
+describe("getTopViewedVideos", function () {
+  it("should return the top 5 videos with the most views", function () {
+      const result = getTopViewedVideos(fixtureData);
+      assert.isArray(result, "Result should be an array");
+      assert.lengthOf(result, 5, "Result should have length 5");
+  });
+});
