@@ -1,20 +1,26 @@
 import client from "../api/client.js"
-import {STACKBUILDERS_ID, MAX_RESULTS} from "../utils/constants.js"
+import {
+    CHANNEL_ID,
+    MAX_RESULTS,
+    PART,
+    FIELDS,
+    TYPE,
+    VIDEO_DURATION,
+} from "../utils/constants.js"
 
 async function getVideosId() {
     try {
         const response = await client.search.list({
-            part: "snippet",
-            channelId: STACKBUILDERS_ID,
-            fields: "items/id/videoId",
+            part: PART,
+            channelId: CHANNEL_ID,
+            fields: FIELDS,
             maxResults: MAX_RESULTS,
-            type: "video",
-            videoDuration: "any",
+            type: TYPE,
+            videoDuration: VIDEO_DURATION,
         })
         return response.data.items.map((item) => item.id.videoId)
     } catch (err) {
-        console.error("Error al buscar videos:", err)
-        return []
+        throw new Error("Error fetching videos from the API: " + err.message)
     }
 }
 

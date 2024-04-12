@@ -1,16 +1,14 @@
 import { google } from "googleapis"
 
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from "dotenv"
+dotenv.config()
 
-const api_key_secret = process.env.YOUTUBE_API_KEY;
-
-const api_version = "v3"
-const api_key = api_key_secret
+const API_VERSION = "v3"
+const API_KEY = process.env.YOUTUBE_API_KEY
 
 const client = google.youtube({
-    version: api_version,
-    auth: api_key,
+    version: API_VERSION,
+    auth: API_KEY,
 })
 
 export default client

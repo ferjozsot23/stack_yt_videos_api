@@ -10,17 +10,18 @@ async function getVideosMetadata() {
             id: videosIdArray,
         })
 
-        const videosMetadata = response.data.items.map(({id, snippet, statistics}) => ({
-            videoId: id,
-            publishedAt: snippet.publishedAt,
-            likeCount: statistics.likeCount,
-            viewCount: statistics.viewCount,
-        }))
+        const videosMetadata = response.data.items.map(
+            ({ id, snippet, statistics }) => ({
+                videoId: id,
+                publishedAt: snippet.publishedAt,
+                likeCount: statistics.likeCount,
+                viewCount: statistics.viewCount,
+            })
+        )
 
         return videosMetadata
     } catch (err) {
-        console.error("Error al buscar videos:", err)
-        return []
+        throw new Error("Error fetching videos metadata: " + err.message)
     }
 }
 
