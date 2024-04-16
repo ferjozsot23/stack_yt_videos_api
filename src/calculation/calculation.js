@@ -1,5 +1,5 @@
 const getTopLikedVideos = (data) =>
-    Array.isArray(data) && data
+    Array.isArray(data)
         ? data
               .filter((video) => video)
               .sort((videoA, videoB) => videoB.likeCount - videoA.likeCount)
@@ -7,7 +7,7 @@ const getTopLikedVideos = (data) =>
         : []
 
 const getNewestVideos = (data) =>
-    Array.isArray(data) && data
+    Array.isArray(data)
         ? data
               .sort(
                   (videoA, videoB) =>
@@ -18,12 +18,12 @@ const getNewestVideos = (data) =>
         : []
 
 const getTotalLikes = (data) =>
-    Array.isArray(data) && data
+    Array.isArray(data)
         ? data.reduce((total, video) => total + parseInt(video.likeCount), 0)
         : 0
 
 const getTopViewedVideos = (data) =>
-    Array.isArray(data) && data
+    Array.isArray(data)
         ? data
               .sort((videoA, videoB) => videoB.viewCount - videoA.viewCount)
               .slice(0, 5)

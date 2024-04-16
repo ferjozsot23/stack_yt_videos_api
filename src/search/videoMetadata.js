@@ -2,9 +2,9 @@ import getVideosId from "./videoId.js"
 import client from "../api/client.js"
 
 async function getVideosMetadata() {
-    const videosIdArray = await getVideosId()
-
+    
     try {
+        const videosIdArray = await getVideosId()
         const response = await client.videos.list({
             part: "snippet,statistics",
             id: videosIdArray,
