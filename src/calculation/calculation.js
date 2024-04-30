@@ -1,13 +1,14 @@
+import { validateData } from "./validator.js"
+
 const getTopLikedVideos = (data) =>
-    Array.isArray(data)
+    validateData(data)
         ? data
-              .filter((video) => video)
               .sort((videoA, videoB) => videoB.likeCount - videoA.likeCount)
               .slice(0, 5)
         : []
 
 const getNewestVideos = (data) =>
-    Array.isArray(data)
+    validateData(data)
         ? data
               .sort(
                   (videoA, videoB) =>
@@ -18,15 +19,22 @@ const getNewestVideos = (data) =>
         : []
 
 const getTotalLikes = (data) =>
-    Array.isArray(data)
+    validateData(data)
         ? data.reduce((total, video) => total + parseInt(video.likeCount), 0)
-        : 0
+        : (() => { throw new Error("Invalid input: Expected an array of videos with its metadata"); })();
+
 
 const getTopViewedVideos = (data) =>
-    Array.isArray(data)
+    validateData(data)
         ? data
               .sort((videoA, videoB) => videoB.viewCount - videoA.viewCount)
               .slice(0, 5)
         : []
 
-export { getTopLikedVideos, getNewestVideos, getTotalLikes, getTopViewedVideos }
+export {
+    getTopLikedVideos,
+    getNewestVideos,
+    getTotalLikes,
+    getTopViewedVideos,
+    validateData,
+}

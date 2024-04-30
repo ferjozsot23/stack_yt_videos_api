@@ -1,4 +1,4 @@
-const fixtureData = [
+export const fixtureData = [
     {
         videoId: "BUYGO5ksvoo",
         publishedAt: "2020-02-05T15:05:42Z",
@@ -61,4 +61,3 @@ const fixtureData = [
     },
 ]
 
-export default fixtureData

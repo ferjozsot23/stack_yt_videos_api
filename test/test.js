@@ -7,7 +7,7 @@ import {
     getTopViewedVideos,
 } from "../src/calculation/calculation.js"
 
-import fixtureData from "./fixtures/youtubeData.js"
+import { fixtureData } from "./fixtures/youtubeData.js"
 
 describe("getTopLikedVideos", () => {
     describe("when receiving valid data", () => {
@@ -146,30 +146,45 @@ describe("getTotalLikes", () => {
         })
     })
 
-    describe("when it receives an empty array", () => {
-        it("returns 0", () => {
-            const result = getTotalLikes([])
-            assert.strictEqual(result, 0, "Result is 0")
+    describe("getTotalLikes", () => {
+        describe("when it receives an empty array", () => {
+            it("throws an error", () => {
+                assert.throws(
+                    () => getTotalLikes([]),
+                    Error,
+                    "Invalid input (empty array): Expected an array"
+                )
+            })
         })
-    })
 
-    describe("when it receives null", () => {
-        it("returns 0", () => {
-            const result = getTotalLikes(null)
-            assert.strictEqual(result, 0, "Result is 0")
+        describe("when it receives null", () => {
+            it("throws an error", () => {
+                assert.throws(
+                    () => getTotalLikes(null),
+                    Error,
+                    "Invalid input (null): Expected an array"
+                )
+            })
         })
-    })
 
-    describe("when it receives undefined", () => {
-        it("returns 0", () => {
-            const result = getTotalLikes(undefined)
-            assert.strictEqual(result, 0, "Result is 0")
+        describe("when it receives undefined", () => {
+            it("throws an error", () => {
+                assert.throws(
+                    () => getTotalLikes(undefined),
+                    Error,
+                    "Invalid input (undefined): Expected an array"
+                )
+            })
         })
-    })
-    describe("when receiving data that is not an array", () => {
-        it("returns an empty array", () => {
-            const result = getTotalLikes("not an array")
-            assert.strictEqual(result, 0)
+
+        describe("when receiving data that is not an array", () => {
+            it("throws an error", () => {
+                assert.throws(
+                    () => getTotalLikes("not an array"),
+                    Error,
+                    "Invalid input: Expected an array"
+                )
+            })
         })
     })
 })

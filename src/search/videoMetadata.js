@@ -1,14 +1,23 @@
-import getVideosId from "./videoId.js"
+import { getChannelVideosId } from "./videoId.js"
 import client from "../api/client.js"
 
-async function getVideosMetadata() {
-    
+export async function getVideosMetadata() {
     try {
-        const videosIdArray = await getVideosId()
+        const videosIdArray = await getChannelVideosId()
+
         const response = await client.videos.list({
             part: "snippet,statistics",
             id: videosIdArray,
         })
+
+        if (
+            !response ||
+            !response.data ||
+            !response.data.items ||
+            response.data.items.length === 0
+        ) {
+            throw new Error("No metadata found for the retrieved video IDs")
+        }
 
         const videosMetadata = response.data.items.map(
             ({ id, snippet, statistics }) => ({
@@ -21,8 +30,9 @@ async function getVideosMetadata() {
 
         return videosMetadata
     } catch (err) {
-        throw new Error("Error fetching videos metadata: " + err.message)
+        throw new Error(
+            "Error fetching metadata from the specified video IDs: " +
+                err.message
+        )
     }
 }
-
-export default getVideosMetadata
