@@ -10,5 +10,3 @@ export const client = google.youtube({
     version: API_VERSION,
     auth: API_KEY,
 })
-
-
