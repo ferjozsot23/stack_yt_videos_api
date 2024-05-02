@@ -19,13 +19,13 @@ export async function getChannelVideosId() {
       videoDuration: VIDEO_DURATION,
     });
 
-    const IS_VALID_DATA_ITEMS =
+    const isValidDataItems =
       !response ||
       !response.data ||
       !response.data.items ||
       response.data.items.length === 0;
 
-    if (IS_VALID_DATA_ITEMS) {
+    if (isValidDataItems) {
       throw new Error("No videos found for the specified channel ID");
     }
 
